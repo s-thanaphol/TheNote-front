@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import axios from 'axios'
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 
@@ -22,16 +21,11 @@ function Index() {
     );
 
 
-    const navigate = useNavigate()
-
     const [a, seta] = useState(null)
 
-
-    if (!localStorage.getItem("token")) {
-        navigate("/login")
-    }
+    
     async function Note() {
-        return await axios.get("http://localhost:5000/note", { headers: { 'x-access-token': localStorage.getItem("token") } })
+        return await axios.get("http://localhost:5000/note", { headers: { 'x-access-token': localStorage.getItem("token") } })  
     }
 
     useEffect(async () => {
@@ -51,6 +45,10 @@ function Index() {
         })      
       
       
+    }
+
+    if (!localStorage.getItem("token")) {
+        return <Navigate to="/login"></Navigate>
     }
 
     return (
