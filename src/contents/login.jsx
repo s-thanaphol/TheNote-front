@@ -30,6 +30,7 @@ function Login (){
         </p>
         <input type="submit" id="submit" className="submit" value="Login"></input>
         </form>
+        <a href="/register">Register</a>
         </div>
     );
 }
