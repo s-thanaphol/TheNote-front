@@ -1,15 +1,9 @@
-import React, {Component} from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import axios from 'axios'
 
 
 function Add (){
     
-    const navigate = useNavigate()
-
-    if(!localStorage.getItem("token")){
-        navigate("/login")
-    }
 
     function submit(e){
         e.preventDefault()
@@ -21,10 +15,11 @@ function Add (){
         },{headers:{"Content-Type":"application/json"}}).then(res => {
             window.location.replace("/note")
         })      
-      
-      
-      }
-    
+        
+    }
+    if (!localStorage.getItem("token")) {
+        return <Navigate to="/login"></Navigate>
+    }
     return(
         <div>
         <h1 align="center">Sign In TheNote</h1>
